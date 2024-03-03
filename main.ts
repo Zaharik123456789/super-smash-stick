@@ -17,7 +17,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
-    if (controller.B.isPressed()) {
+    if (controller.player1.isPressed(ControllerButton.B)) {
         statusbar2.max += 1
         sprites.destroy(projectile)
     } else if (controller.player2.isPressed(ControllerButton.B)) {
@@ -43,6 +43,9 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
     if (mySprite2.isHittingTile(CollisionDirection.Bottom)) {
         mySprite2.vy = -200
     }
+})
+statusbars.onZero(StatusBarKind.Health, function (status) {
+    game.gameOver(true)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
